@@ -1,0 +1,128 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-user">
+                    <div class="image">
+                        <img src="assets/img/full-screen-image-3.jpg" alt="patient" />
+                    </div>
+                    <div class="content">
+                        <div class="author">
+                            <img class="avatar border-gray" src="assets/img/faces/face-5.jpg" alt="..." />
+
+                            <h4 class="title">Karlo<br />
+                                <small>instakarlo@github.com</small>
+                            </h4>
+                        </div>
+                        <div class="content">
+                            <div class="col-md-6">
+                                <h5>Patient History</h5>
+                                <div class="alert alert-info">
+                                    <span>Last check-up: January 20, 2020</span>
+                                </div>
+                                <div class="alert alert-info">
+                                    <span>Last uploaded reading: January 20, 2020</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h5>Notifications</h5>
+                                <div class="alert alert-warning">
+                                    <button type="button" aria-hidden="true" class="close">×</button>
+                                    <span><b> Warning - </b> Patient lung congestion is increasing. Further tests
+                                        required.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <app-highcharts [title]="'Trend'" [subtitle]="'Pulmonary Readings from first week of check-up'"
+                    [options]="optionsPrediction"></app-highcharts>
+            </div>
+            <div class="col-md-6">
+                <app-highcharts [title]="'Pulse Readings'"
+                    [subtitle]="'Measured tactile arterial palpation of the heartbeat by trained fingertips'"
+                    [options]="movingLineOptions"></app-highcharts>
+            </div>
+        </div>
+        <div class="row equal">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="content">
+                        <h4 class="title">Sound Waveform</h4>
+                        <div class="content">
+                            <label>Load Audio File:</label>
+                            <input id="audio_file" type="file" accept="audio/*" (change)="onAudioFileUpload($event)" />
+                            <!-- <p>
+                                        <audio controls id="audio_player"></audio>
+                                    </p> -->
+                        </div>
+                        <hr>
+                        <div id="waveform"></div>
+                        <hr>
+                        <div class="places-buttons">
+                            <div class="row">
+                                <div class="col-md-2 col-md-offset-3">
+                                    <button class="btn btn-default btn-block" (click)="onPlayPressed()" disabled>Record</button>
+                                </div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-default btn-block" (click)="onPlayPressed()">Play</button>
+                                </div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-default btn-block" (click)="onStopPressed()">Stop</button>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Acoustic Analytics</h4>
+                    </div>
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert" [ngStyle]="{'background-color': getAnalyticsColor()}">
+                                    <span [innerHTML]="reading.value"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <app-highcharts [options]="gaugeOptions"></app-highcharts>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Patient History</h4>
+                    </div>
+                    <div class="content table-responsive table-full-width">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th *ngFor="let cell of tableData.headerRow">{{ cell }}</th>
+                                    <th data-field="actions" data-formatter="operateFormatter"
+                                        data-events="operateEvents">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let row of tableData.dataRows">
+                                    <td *ngFor="let cell of row">{{cell}}</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

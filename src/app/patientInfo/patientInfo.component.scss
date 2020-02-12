@@ -1,0 +1,22 @@
+.sound-field {
+    position: relative;
+    text-align: center;
+}
+
+.input-sound-center {
+    display: inline-block;
+    padding: 20px;
+}
+
+.row.equal {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#waveform {
+    height: 130px;
+}
+
+:host ::ng-deep wave {
+    height: 310px;
+}
