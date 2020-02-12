@@ -188,7 +188,7 @@ export class PatientInfoComponent implements OnInit {
         // audio_player.play();
 
         this.startWaveForm(soundFile);
-        this.getAcousticScore(files[0]);
+        this.getScore(files[0]);
       }
     } catch (e) {
       console.log(e);
@@ -298,7 +298,7 @@ export class PatientInfoComponent implements OnInit {
     });
   }
 
-  private async getAcousticScore(file: File) {
+  private async getScore(file: File) {
     this.reading = {
       value: 'Normal',
       confidence: 100,
